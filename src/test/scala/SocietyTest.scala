@@ -1,28 +1,30 @@
-
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalacheck.derive.MkArbitrary
 
 import scala.util.Random
 
-
-class UnitedWeStandAppTest extends AnyFunSpec with Matchers {
+class SocietyTest extends AnyFunSpec with Matchers {
   describe("Society") {
     describe("generateParticipants") {
       it("generates a list of Participants") {
         val participantListSize = 10
-        val society = Society.create[Int](participantListSize) { () =>
-          Random.nextInt()
+        val society = Society.create[Boolean](participantListSize) { () =>
+          Random.nextBoolean()
         }
 
         society.participants.size shouldBe participantListSize
       }
     }
+
     describe("getGroup") {
       it("gets a group") {
         val listSize = 10
         val arbitaryParticipant = MkArbitrary[Participant[Int]].arbitrary
-        val arbitaryParticipantList = (1 to listSize).map(_ => arbitaryParticipant.arbitrary.sample).toList.flatten
+        val arbitaryParticipantList = (1 to listSize)
+          .map(_ => arbitaryParticipant.arbitrary.sample)
+          .toList
+          .flatten
 
         val participantsWithIndex = arbitaryParticipantList.zipWithIndex.toMap
 

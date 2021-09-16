@@ -6,6 +6,7 @@ import scala.collection.immutable.ListMap
 import scala.util.Random
 
 case class Society[T](participants: List[Participant[T]]) extends Logging {
+
   def update(implicit debatable: Debatable[T]): Society[T] = {
     val participantGroup = Society.getGroup(participants)
     val updatedparticipantGroup = participantGroup.discuss.toList
@@ -16,9 +17,12 @@ case class Society[T](participants: List[Participant[T]]) extends Logging {
         listMap.updated(participant.uuid, participant)
       }
 
-    val updatedSocietyParticipants = updatedparticipantGroup.foldLeft(participantMap) { (pMap, participant) =>
-      pMap.updated(participant.uuid, participant)
-    }.values.toList
+    val updatedSocietyParticipants = updatedparticipantGroup
+      .foldLeft(participantMap) { (pMap, participant) =>
+        pMap.updated(participant.uuid, participant)
+      }
+      .values
+      .toList
 
     info(updatedSocietyParticipants.map(_.opinion))
     copy(participants = updatedSocietyParticipants)
@@ -26,9 +30,10 @@ case class Society[T](participants: List[Participant[T]]) extends Logging {
 }
 
 object Society {
+
   def create[T](population: Int = 10)(opinionGenerator: () => T): Society[T] = {
     val participants = (1 to population).map { _ =>
-      Participant(opinion=opinionGenerator())
+      Participant(opinion = opinionGenerator())
     }.toList
 
     new Society[T](participants)
@@ -39,7 +44,7 @@ object Society {
 
     val first = Random.between(0, participants.size)
     val second = (first + 1) % (participants.size - 1)
-    val third = (first + 2) % (participants.size - 1)
+    val third = (first + 2)  % (participants.size - 1)
     val fourth = (first + 3) % (participants.size - 1)
 
     ParticipantGroup(
