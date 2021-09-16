@@ -29,10 +29,10 @@ class UnitedWeStandAppTest extends AnyFunSpec with Matchers {
         (1 to 100).foreach { _ =>
           val group = Society.getGroup(arbitaryParticipantList)
 
-          val firstIndex = participantsWithIndex(group.left)
-          val secondIndex = participantsWithIndex(group.innerPair.first)
-          val thirdIndex = participantsWithIndex(group.innerPair.second)
-          val fourthIndex = participantsWithIndex(group.right)
+          val firstIndex = participantsWithIndex(group.farLeft)
+          val secondIndex = participantsWithIndex(group.innerPair.left)
+          val thirdIndex = participantsWithIndex(group.innerPair.right)
+          val fourthIndex = participantsWithIndex(group.farRight)
 
           secondIndex shouldBe (firstIndex + 1) % (listSize - 1)
           thirdIndex shouldBe (secondIndex + 1) % (listSize - 1)

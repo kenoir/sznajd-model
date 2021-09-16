@@ -1,11 +1,18 @@
-case class ParticipantGroup[T](left: Participant[T], innerPair: ParticipantPair[T], right: Participant[T]) {
+case class ParticipantGroup[T](farLeft: Participant[T], innerPair: ParticipantPair[T], farRight: Participant[T]) {
   def discuss(implicit agreeable: Debatable[T]): ParticipantGroup[T] = {
-    val newLeft = innerPair.discuss(left)
-    val newRight = innerPair.discuss(right)
-
-    this.copy(left=newLeft, right=newRight)
+    if(innerPair.agrees) {
+      this.copy(
+        farLeft=farLeft.persuade(innerPair.left),
+        farRight=farRight.persuade(innerPair.right)
+      )
+    } else {
+      this.copy(
+        farLeft=farLeft.dissuade(innerPair.left),
+        farRight=farRight.dissuade(innerPair.right)
+      )
+    }
   }
 
   def toList =
-    List(left, innerPair.first, innerPair.second, right)
+    List(farLeft, innerPair.left, innerPair.right, farRight)
 }
