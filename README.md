@@ -1,4 +1,4 @@
-# (Poor) Sznajd model implemenation
+# Sznajd model implemenation
 
 This repository implements an incorrect and overly complex version of the [Sznajd model](https://en.wikipedia.org/wiki/Sznajd_model).
 
