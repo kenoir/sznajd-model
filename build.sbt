@@ -13,7 +13,7 @@ libraryDependencies += "ch.qos.logback"             % "logback-core"            
 libraryDependencies += "ch.qos.logback"             % "logback-access"             % "1.1.8"
 
 libraryDependencies ++= Seq(
-  "io.circe" %% "circe-core" % "0.14.1",
+  "io.circe" %% "circe-core"    % "0.14.1",
   "io.circe" %% "circe-generic" % "0.14.1",
-  "io.circe" %% "circe-parser" % "0.14.1"
+  "io.circe" %% "circe-parser"  % "0.14.1"
 )
