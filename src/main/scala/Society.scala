@@ -24,7 +24,7 @@ case class Society[T](participants: List[Participant[T]]) extends Logging {
       .values
       .toList
 
-    info(updatedSocietyParticipants.map(_.opinion))
+    // info(updatedSocietyParticipants.map(_.opinion))
     copy(participants = updatedSocietyParticipants)
   }
 }

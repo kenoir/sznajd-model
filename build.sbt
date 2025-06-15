@@ -11,3 +11,9 @@ libraryDependencies += "org.clapper"                %% "grizzled-slf4j"         
 libraryDependencies += "ch.qos.logback"             % "logback-classic"            % "1.1.8"
 libraryDependencies += "ch.qos.logback"             % "logback-core"               % "1.1.8"
 libraryDependencies += "ch.qos.logback"             % "logback-access"             % "1.1.8"
+
+libraryDependencies ++= Seq(
+  "io.circe" %% "circe-core"    % "0.14.1",
+  "io.circe" %% "circe-generic" % "0.14.1",
+  "io.circe" %% "circe-parser"  % "0.14.1"
+)
